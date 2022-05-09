@@ -1,4 +1,4 @@
-
+import { generateMasonryGrid} from 'app.js';s
 
 
 // Scroll Loop
@@ -36,9 +36,10 @@ console.log(post);
 
 
 // Ubaci link u backgreound image
-images.forEach((image, post) => {
-    image.style.backgroundImage = 'url(' + post[image].image + ')';
-})
+
+for (let i = 0; i < images.length; i++) {
+    images[i].style.backgroundImage = `url(${post[i].image})`;
+}
 
 // Reesponsive za Mobitele
 let isMobile = false;

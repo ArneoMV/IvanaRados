@@ -56,3 +56,9 @@ if(previousScreenSize < 600){
 }else{
     generateMasonryGrid(4, posts)
 }
+
+
+
+
+// Exporting variables and functions
+export { generateMasonryGrid };
