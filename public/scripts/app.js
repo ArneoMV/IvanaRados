@@ -1,3 +1,4 @@
+// GRID //
 const container = document.querySelector('.container');
 
 function generateMasonryGrid(columns, posts){
@@ -56,9 +57,3 @@ if(previousScreenSize < 600){
 }else{
     generateMasonryGrid(4, posts)
 }
-
-
-
-
-// Exporting variables and functions
-export { generateMasonryGrid };

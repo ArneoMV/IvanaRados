@@ -1,12 +1,4 @@
-  
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    list-style: none;
-  }
-  
+ 
   ::-webkit-scrollbar {
     display: none;
   }
@@ -41,52 +33,7 @@
   section {
     position: relative;
     height: 50vh;
-    /* border: 1px solid black; */
-  }
-  
-  .img-1 {
-    position: absolute;
-    top: 5%;
-    left: 2%;
-    width: 40%;
-    height: 90%;
-  }
-  
-  .proj-info-1 {
-    position: absolute;
-    left: 44%;
-    bottom: 5%;
-    text-align: left;
-  }
-  
-  .img-2 {
-    position: absolute;
-    top: 20%;
-    right: 2%;
-    width: 30%;
-    height: 70%;
-  }
-  
-  .proj-info-2 {
-    position: absolute;
-    right: 34%;
-    bottom: 10%;
-    text-align: right;
-  }
-  
-  .img-3 {
-    position: absolute;
-    top: 10%;
-    right: 2%;
-    width: 20%;
-    height: 80%;
-  }
-  
-  .proj-info-3 {
-    position: absolute;
-    right: 24%;
-    bottom: 10%;
-    text-align: right;
+
   }
   
   .img {

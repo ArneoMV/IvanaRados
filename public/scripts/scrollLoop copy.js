@@ -1,4 +1,4 @@
-// import { generateMasonryGrid } from 'app.js';
+// import { generateMasonryGrid} from 'app.js';
 
 
 // Scroll Loop
@@ -34,17 +34,10 @@ for(let i = 1; i <= 10; i++) {
 }
 console.log(post);
 
-
-
-
-
 // Ubaci link u backgreound image
 for (let i = 0; i < images.length; i++) {
     images[i].style.backgroundImage = `url(${post[i].image})`;
 }
-
-
-
 
 // Reesponsive za Mobitele
 let isMobile = false;
@@ -53,7 +46,6 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
     isMobile = true;
 }
 
-// napravi klon slika/postova
 if(!isMobile) {
     imgSections.forEach(section => {
         let clonedSection = section.cloneNode(true);
@@ -113,7 +105,6 @@ function generateMasonryGrid(columns, posts){
     container.innerHTML = '';
     let columnWrappers = {};
 
-    // stvori kolone
     for(let i = 0; i < columns; i++){
         columnWrappers[`column${i}`] = [];
     }
@@ -122,7 +113,7 @@ function generateMasonryGrid(columns, posts){
         const column = i % columns;
         columnWrappers[`column${column}`].push(posts[i]);
     }
-    // stvori divove i slike u kolonama
+
     for(let i = 0; i < columns; i++){
         let columnPosts = columnWrappers[`column${i}`];
         let div = document.createElement('div');
@@ -142,27 +133,27 @@ function generateMasonryGrid(columns, posts){
     }
 }
 
-// prilagodi broj kolona ovisno o širini ekrana
 let previousScreenSize = window.innerWidth;
 
 window.addEventListener('resize', () => {
     imageIndex = 0;
     if(window.innerWidth < 600 && previousScreenSize >= 600){
-        generateMasonryGrid(1, post);
+        generateMasonryGrid(1, posts);
     }else if(window.innerWidth >= 600 && window.innerWidth < 1000 && (previousScreenSize < 600 || previousScreenSize >= 1000)){
-        generateMasonryGrid(2, post);
+        generateMasonryGrid(2, posts);
 
     }else if(window.innerWidth >= 1000 && previousScreenSize < 1000){
-        generateMasonryGrid(4, post)
+        generateMasonryGrid(4, posts)
     }
     previousScreenSize = window.innerWidth;
 
 })
 
 if(previousScreenSize < 600){
-    generateMasonryGrid(1, post)
+    generateMasonryGrid(1, posts)
 }else if(previousScreenSize >= 600 && previousScreenSize < 1000){
-    generateMasonryGrid(2, post)
+    generateMasonryGrid(2, posts)
 }else{
-    generateMasonryGrid(4, post)
+    generateMasonryGrid(4, posts)
 }
+
