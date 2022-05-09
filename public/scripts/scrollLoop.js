@@ -3,6 +3,11 @@
 
 // Scroll Loop
 
+const scrollable = document.querySelector('.scrollable');
+const content = document.querySelector('.content');
+const imgSections = [...document.querySelectorAll('.img-section')];
+const images= [...document.querySelectorAll('.img')];
+
 const post = []
 const imagesPost = [
     'https://dr.savee-cdn.com/things/6/1/947fc7825d592e073f3906.jpg',
@@ -16,33 +21,23 @@ const imagesPost = [
     'https://dr.savee-cdn.com/things/6/1/64711b0e69492ef09b7fd0.jpg'
 ]
 
-const scrollable = document.querySelector('.scrollable');
-const content = document.querySelector('.content');
-const imgSections = [...document.querySelectorAll('.img-section')];
-const images= [...document.querySelectorAll('.img')];
-
-
 // Pozovi post koliko puta zelis
 let imageIndex = 0;
-for(let i = 1; i <= 5; i++) {
+for(let i = 1; i <= 10; i++) {
     let item = {
-        id: i,
-        // title: `Post ${i}`,
-        // date: `${i < 10 ? 0 : ''}${i}/10/2021 `,
+        //id: i,
         image: imagesPost[imageIndex]
     }
     post.push(item);
     imageIndex++;
-    if (imageIndex > images.length - 1) imageIndex = 0;
+    if (imageIndex > imagesPost.length - 1) imageIndex = 0;
 }
 console.log(post);
 
 
 // Ubaci link u backgreound image
-images.forEach((image, idx, post) => {
-    // image.style.backgroundImage = `url(./images/${idx + 1}.jpeg)`
-    // image.style.backgroundImage = `url($(post.image))`
-    // image.style.backgroundImage = `url(" +  post[imagee] + ");`
+images.forEach((image, post) => {
+    image.style.backgroundImage = 'url(' + post[image].image + ')';
 })
 
 // Reesponsive za Mobitele
