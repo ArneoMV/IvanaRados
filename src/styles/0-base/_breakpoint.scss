@@ -1,0 +1,76 @@
+/* Brakepoint's */
+
+
+// Extra small
+$screen-xs: 150px;
+// Small tablets and large smartphones (lendscape view)
+$screen-sm: 320px;
+// Small tablets (portrait view)
+$screen-md: 480px;
+// Tablet and small desktops
+$screen-lg: 720px;
+// extra large screens
+$screen-xl: 920px;
+// extraextra large screens
+$screen-xxl: 1200px;
+
+// MIXIN
+@mixin respond-to ($media) {
+    @if $media == extrasmall-screens {
+        @media only screen and (min-width: $screen-xs + 1) and (max-width: $screen-md - 1) { @content; }
+    }
+    @else if $media == small-screens {
+        @media only screen and (min-width: $screen-sm + 1) and (max-width: $screen-md - 1) { @content; }
+    }
+    @else if $media == medium-screens {
+        @media only screen and (min-width: $screen-md + 1) and (max-width: $screen-lg - 1) { @content; }
+    }
+    @else if $media == large-screens {
+        @media only screen and (min-width: $screen-lg + 1) and (max-width: $screen-xl - 1) { @content; }
+    }
+    @else if $media == extralarge-screens {
+        @media only screen and (min-width: $screen-xl + 1) and (max-width: $screen-xxl - 1) { @content; }
+    }
+    @else if $media == extraextralarge-screens {
+        @media only screen and (min-width: $screen-xxl) { @content; }
+    }
+}
+
+// KAKO KORISTITI
+// unijeti brakepoint u roditelj element
+.demo {
+    display: grid;  
+    // @mixin xs-screen {
+    // }
+    // @mixin small-screen {
+    // }
+    // @mixin medium-screen {
+    // }
+    // @mixin large-screen {
+    // }
+    // @mixin xl-screen {
+    // }
+    // @mixin xxl-screen {
+    // }
+    // @include respond-to(extrasmall-screens) { @include xs-screen(); }
+    // @include respond-to(small-screens) {  @include small-screen(); }
+    // @include respond-to(medium-screens) {  @include medium-screen(); }
+    // @include respond-to(large-screens) {  @include large-screen(); }
+    // @include respond-to(extralarge-screens) {  @include xl-screen(); }
+    // @include respond-to(extraextralarge-screens) {  @include xxl-screen(); }
+
+    @mixin mobile__screen {
+    }
+    @mixin tablet__screen {
+    }
+    @mixin desktop__screen {
+    }
+
+    @include respond-to(extrasmall-screens) { @include mobile__screen(); }
+    @include respond-to(small-screens) {  @include mobile__screen(); }
+    @include respond-to(medium-screens) {  @include tablet__screen(); }
+    @include respond-to(large-screens) {  @include tablet__screen(); }
+    @include respond-to(extralarge-screens) {  @include desktop__screen(); }
+    @include respond-to(extraextralarge-screens) {  @include desktop__screen(); }
+
+}
