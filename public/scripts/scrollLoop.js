@@ -1,12 +1,15 @@
-// import { generateMasonryGrid } from 'app.js';
-
-
-// Scroll Loop
+// Trenutno se screen treba vertikalno smanjiti kako bi scroll loop radio bolje
+// Kod funkcionira tako da učita slike unutar "columna" koje su unutar containera
+// Od učitanih slika naprave se klonovi koji se prikažu kada se originalne slike skrolaju
+// U tom treneutku scroll bar se se prebaci na početak stranice, te tako nastaje iluzija infinitee scroll loopa
+// Problem nastaje kada se index prvi puta očita. View se treba ručno malo resizati kako bi scroll ispravno radio
+// ps. scroll-behavior: smooth; u CSS-u baš i nije toliko smooth
+// Scroll Loop Masonry Grid
 
 const scrollable = document.querySelector('.scrollable');
 const content = document.querySelector('.content');
 const imgSections = [...document.querySelectorAll('.img-section')];
-const images= [...document.querySelectorAll('.img')];
+const images = document.getElementsByTagName("img");
 
 const post = []
 const imagesPost = [
@@ -21,9 +24,11 @@ const imagesPost = [
     'https://dr.savee-cdn.com/things/6/1/64711b0e69492ef09b7fd0.jpg'
 ]
 
+// LOOP //
+
 // Pozovi post koliko puta zelis
 let imageIndex = 0;
-for(let i = 1; i <= 10; i++) {
+for(let i = 1; i <= 30; i++) {
     let item = {
         //id: i,
         image: imagesPost[imageIndex]
@@ -34,17 +39,10 @@ for(let i = 1; i <= 10; i++) {
 }
 console.log(post);
 
-
-
-
-
 // Ubaci link u backgreound image
 for (let i = 0; i < images.length; i++) {
     images[i].style.backgroundImage = `url(${post[i].image})`;
 }
-
-
-
 
 // Reesponsive za Mobitele
 let isMobile = false;
@@ -53,7 +51,8 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
     isMobile = true;
 }
 
-// napravi klon slika/postova
+// Napravi kopiju slika, da kaada dođe na kraj scrolla, se prikaže kopija. 
+// U tom trenutnu scroll se vrati na vrh, te nastane iluzija da je infinitee loop scroll
 if(!isMobile) {
     imgSections.forEach(section => {
         let clonedSection = section.cloneNode(true);
@@ -62,6 +61,7 @@ if(!isMobile) {
     })
 }
 
+// Ne znam zašto ne radi transform: translateY ako maknem ovu variajablu
 const menuTog = document.querySelector('.menu-tog');
 
 
@@ -108,27 +108,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const container = document.querySelector('.container');
 
-function generateMasonryGrid(columns, posts){
+function generateMasonryGrid(columns, post){
 
     container.innerHTML = '';
     let columnWrappers = {};
 
-    // stvori kolone
     for(let i = 0; i < columns; i++){
         columnWrappers[`column${i}`] = [];
     }
 
-    for(let i = 0; i < posts.length; i++){
+    for(let i = 0; i < post.length; i++){
         const column = i % columns;
-        columnWrappers[`column${column}`].push(posts[i]);
+        columnWrappers[`column${column}`].push(post[i]);
     }
-    // stvori divove i slike u kolonama
+
     for(let i = 0; i < columns; i++){
-        let columnPosts = columnWrappers[`column${i}`];
+        let columnPost = columnWrappers[`column${i}`];
         let div = document.createElement('div');
         div.classList.add('column');
 
-        columnPosts.forEach(post => {
+        columnPost.forEach(post => {
             let postDiv = document.createElement('div');
             postDiv.classList.add('post');
             let image = document.createElement('img');
@@ -142,7 +141,6 @@ function generateMasonryGrid(columns, posts){
     }
 }
 
-// prilagodi broj kolona ovisno o širini ekrana
 let previousScreenSize = window.innerWidth;
 
 window.addEventListener('resize', () => {
@@ -166,3 +164,4 @@ if(previousScreenSize < 600){
 }else{
     generateMasonryGrid(4, post)
 }
+
