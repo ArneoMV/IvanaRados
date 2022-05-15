@@ -4,6 +4,9 @@
 // U tom treneutku scroll bar se se prebaci na početak stranice, te tako nastaje iluzija infinitee scroll loopa
 // Problem nastaje kada se index prvi puta očita. View se treba ručno malo resizati kako bi scroll ispravno radio
 // ps. scroll-behavior: smooth; u CSS-u baš i nije toliko smooth
+
+
+
 // Scroll Loop Masonry Grid
 
 const scrollable = document.querySelector('.scrollable');
