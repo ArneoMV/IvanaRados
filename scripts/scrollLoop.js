@@ -145,23 +145,7 @@ let previousScreenSize = window.innerWidth;
 
 window.addEventListener('resize', () => {
     imageIndex = 0;
-    if(window.innerWidth < 600 && previousScreenSize >= 600){
-        generateMasonryGrid(1, post);
-    }else if(window.innerWidth >= 600 && window.innerWidth < 1000 && (previousScreenSize < 600 || previousScreenSize >= 1000)){
-        generateMasonryGrid(2, post);
-
-    }else if(window.innerWidth >= 1000 && previousScreenSize < 1000){
-        generateMasonryGrid(4, post)
-    }
+    generateMasonryGrid(3, post)
     previousScreenSize = window.innerWidth;
 
 })
-
-if(previousScreenSize < 600){
-    generateMasonryGrid(1, post)
-}else if(previousScreenSize >= 600 && previousScreenSize < 1000){
-    generateMasonryGrid(2, post)
-}else{
-    generateMasonryGrid(4, post)
-}
-
