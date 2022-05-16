@@ -133,8 +133,8 @@ function generateMasonryGrid(columns, post){
     // Napravi kopiju slika, da kaada dođe na kraj scrolla, se prikaže kopija. 
     // U tom trenutnu scroll se vrati na vrh, te nastane iluzija da je infinitee loop scroll
     if(!isMobile) {
-        container.forEach(columnPost => {
-            let clonedSection = columnPost.cloneNode(true);
+        columnPost.forEach(image => {
+            let clonedSection = image.cloneNode(true);
             clonedSection.classList.add('clone')
             content.appendChild(clonedSection)
         })
