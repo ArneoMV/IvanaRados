@@ -11,9 +11,10 @@
 
 const scrollable = document.querySelector('.scrollable');
 const content = document.querySelector('.content');
-const imgSections = [...document.querySelectorAll('.img-section')];
 const images = document.getElementsByTagName("img");
-
+const container = document.querySelector('.container');
+// Ne znam zašto ne radi transform: translateY ako maknem menuTog variajablu
+const menuTog = document.querySelector('.menu-tog');
 const post = []
 const imagesPost = [
     'https://dr.savee-cdn.com/things/6/1/947fc7825d592e073f3906.jpg',
@@ -31,7 +32,7 @@ const imagesPost = [
 
 // Pozovi post koliko puta zelis
 let imageIndex = 0;
-for(let i = 1; i <= 30; i++) {
+for(let i = 1; i <= 15; i++) {
     let item = {
         //id: i,
         image: imagesPost[imageIndex]
@@ -54,18 +55,6 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
     isMobile = true;
 }
 
-// Napravi kopiju slika, da kaada dođe na kraj scrolla, se prikaže kopija. 
-// U tom trenutnu scroll se vrati na vrh, te nastane iluzija da je infinitee loop scroll
-if(!isMobile) {
-    imgSections.forEach(section => {
-        let clonedSection = section.cloneNode(true);
-        clonedSection.classList.add('clone')
-        content.appendChild(clonedSection)
-    })
-}
-
-// Ne znam zašto ne radi transform: translateY ako maknem ovu variajablu
-const menuTog = document.querySelector('.menu-tog');
 
 
 // Set scroll dimensions
@@ -109,7 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // GRID  //
 
-const container = document.querySelector('.container');
 
 function generateMasonryGrid(columns, post){
 
@@ -141,6 +129,15 @@ function generateMasonryGrid(columns, post){
             div.appendChild(postDiv) 
         });
         container.appendChild(div);
+    }
+    // Napravi kopiju slika, da kaada dođe na kraj scrolla, se prikaže kopija. 
+    // U tom trenutnu scroll se vrati na vrh, te nastane iluzija da je infinitee loop scroll
+    if(!isMobile) {
+        container.forEach(columnPost => {
+            let clonedSection = columnPost.cloneNode(true);
+            clonedSection.classList.add('clone')
+            content.appendChild(clonedSection)
+        })
     }
 }
 
