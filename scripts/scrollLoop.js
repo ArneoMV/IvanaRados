@@ -41,7 +41,7 @@ for(let i = 1; i <= 15; i++) {
     imageIndex++;
     if (imageIndex > imagesPost.length - 1) imageIndex = 0;
 }
-console.log(post);
+
 
 // Ubaci link u backgreound image
 for (let i = 0; i < images.length; i++) {
