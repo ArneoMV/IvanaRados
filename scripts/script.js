@@ -1,5 +1,6 @@
-let demo = document.getElementById("demo");
-let img = document.createElement("img");
+
+const images = document.getElementsByTagName("img");
+const container = document.querySelector('.container');
 
 const post = []
 const imagesPost = [
@@ -14,29 +15,74 @@ const imagesPost = [
     'https://dr.savee-cdn.com/things/6/1/64711b0e69492ef09b7fd0.jpg'
 ]
 
-img.src ="images/1.jpeg"
-//demo.appendChild(img);
-
-function placeImage(x)
-{
-    demo.innerHTML = ""; // clear images
-    let imageIndex = 0;
-    
-    for (let counter = 1; counter <= 5; counter++) {
-        var image=document.createElement("img");
-        let item = {
-            image: imagesPost[imageIndex]
-        }
-        post.push(item);
-        imageIndex++;
-        if (imageIndex > imagesPost.length - 1) imageIndex = 0;
-        image.src="images/"+counter+".jpeg";
-        demo.appendChild(image);
-
-        console.log(post)
+// Pozovi slike 
+let imageIndex = 0;
+for(let i = 1; i <= 9; i++) {
+    let item = {
+        //id: i,
+        image: imagesPost[imageIndex]
     }
+    post.push(item);
+    imageIndex++;
+    if (imageIndex > imagesPost.length - 1) imageIndex = 0;
+}
+
+
+// Ubaci link u backgreound image
+for (let i = 0; i < images.length; i++) {
+    images[i].style.backgroundImage = `url(${post[i].image})`;
+}
+
+// Geeneriraj Grid
+function generateMasonryGrid(columns, post) {
+    container.innerHTML = '';
+    let columnWrappers = [];
+    let column = '';
+    let columnPost = [];
+
+    for(let i = 0; i < columns; i++){
+        columnWrappers[`column${i}`] = [];
+    }
+
+    for(let i = 0; i < post.length; i++){
+        column = i % columns;
+        columnWrappers[`column${column}`].push(post[i]);
+    }
+
+    for(let i = 0; i < columns; i++){
+        columnPost = columnWrappers[`column${i}`];
+        let div = document.createElement('div');
+        div.classList.add('column');
+
+        columnPost.forEach(post => {
+            let postDiv = document.createElement('div');
+            postDiv.classList.add('post');
+            let image = document.createElement('img');
+            image.src = post.image;
+
+            // let clonedSection = postDiv.cloneNode(true);
+            // clonedSection.classList.add('clone');
+            // div.append(clonedSection);
+
+            postDiv.append(image);
+            div.appendChild(postDiv);
+
+
+            columnWrappers.forEach(column => {
+                let clonedSection = post.cloneNode(true);
+                clonedSection.classList.add('clone');
+                columnWrappers.appendChild(clonedSection);
+            });
+            
+        });
+        container.appendChild(div);
+    }
+
+ 
+
 }
 
 window.onload = function() {
-    placeImage();
+    //placeImage();
+    generateMasonryGrid(3, post);
 };

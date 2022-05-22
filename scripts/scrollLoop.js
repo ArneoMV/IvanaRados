@@ -56,7 +56,6 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
 }
 
 
-
 // Set scroll dimensions
 function init(){
     document.body.style.height = `${content.getBoundingClientRect().height}px`;
@@ -98,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // GRID  //
 
-
 function generateMasonryGrid(columns, post){
 
     container.innerHTML = '';
@@ -123,9 +121,8 @@ function generateMasonryGrid(columns, post){
             postDiv.classList.add('post');
             let image = document.createElement('img');
             image.src = post.image;
-            let hoverDiv = document.createElement('div');
 
-            postDiv.append(image, hoverDiv)
+            postDiv.append(image)
             div.appendChild(postDiv) 
         });
         container.appendChild(div);
@@ -143,9 +140,14 @@ function generateMasonryGrid(columns, post){
 
 let previousScreenSize = window.innerWidth;
 
-window.addEventListener('resize', () => {
+// window.addEventListener('resize', () => {
+//     imageIndex = 0;
+//     generateMasonryGrid(3, post)
+//     previousScreenSize = window.innerWidth;
+// })
+
+window.onload = function() {
     imageIndex = 0;
     generateMasonryGrid(3, post)
     previousScreenSize = window.innerWidth;
-
-})
+};
