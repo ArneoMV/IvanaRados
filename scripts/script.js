@@ -1,8 +1,9 @@
+'use strict'
 
 const images = document.getElementsByTagName("img");
 const container = document.querySelector('.container');
 
-const post = []
+let post = []
 const imagesPost = [
     'https://dr.savee-cdn.com/things/6/1/947fc7825d592e073f3906.jpg',
     'https://dr.savee-cdn.com/things/6/0/ddba20ea875e5eba5e8856.jpg',
@@ -60,25 +61,24 @@ function generateMasonryGrid(columns, post) {
             let image = document.createElement('img');
             image.src = post.image;
 
-            // let clonedSection = postDiv.cloneNode(true);
-            // clonedSection.classList.add('clone');
-            // div.append(clonedSection);
+            // columnPost.forEach(image => {
+            //     let clonedSection = image.cloneNode(true);
+            //     clonedSection.classList.add('clone')
+            //     content.appendChild(clonedSection)
+            // })
+
+            let clonedSection = postDiv.cloneNode(true);
+            clonedSection.classList.add('clone');
+            
 
             postDiv.append(image);
             div.appendChild(postDiv);
-
-
-            columnWrappers.forEach(column => {
-                let clonedSection = post.cloneNode(true);
-                clonedSection.classList.add('clone');
-                columnWrappers.appendChild(clonedSection);
-            });
             
+            // columnPost.appendChild(clonedSection);
+    
         });
         container.appendChild(div);
     }
-
- 
 
 }
 
